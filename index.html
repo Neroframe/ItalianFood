@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The History of Pasta</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">The History of Pasta</a>
+      <button
+        class="navbar-light navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left-aligned nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="index.html"
+              >History of Pasta</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="another.html"
+              >Italian Pasta</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="api.html"
+              >More Recipes</a
+            >
+          </li>
+        </ul>
+        <!-- Right-aligned nav items -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button id="theme-switch" class="btn btn-outline-secondary">
+              Toggle Theme
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="login-button" class="btn btn-outline-primary">
+              Login
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="register-button" class="btn btn-outline-primary">
+              Register
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="profile-button" class="btn btn-outline-primary">
+              Profile
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="auth-button" class="btn btn-outline-primary">
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span id="login-close" class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Username:</label>
+            <input
+              type="text"
+              id="login-username"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input
+              type="password"
+              id="login-password"
+              class="form-control"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <p id="auth-message"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span id="register-close" class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="register-name">Name:</label>
+            <input
+              type="text"
+              id="register-name"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email:</label>
+            <input
+              type="email"
+              id="register-email"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-phone">Phone Number:</label>
+            <input
+              type="tel"
+              id="register-phone"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-username">Username:</label>
+            <input
+              type="text"
+              id="register-username"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password:</label>
+            <input
+              type="password"
+              id="register-password"
+              class="form-control"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <p id="register-message"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="carousel slide mt-4" data-ride="carousel" id="pastaCarousel">
+      <ol class="carousel-indicators">
+        <li data-target="#pastaCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#pastaCarousel" data-slide-to="1"></li>
+        <li data-target="#pastaCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="assets/images/image1.jpg"
+            class="d-block w-100"
+            alt="Image 1"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="assets/images/image2.jpg"
+            class="d-block w-100"
+            alt="Image 2"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="assets/images/image3.jpg"
+            class="d-block w-100"
+            alt="Image 3"
+          />
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#pastaCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#pastaCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="container-fluid mt-4">
+      <div class="row mb-4">
+        <div class="col-lg-6 mb-4">
+          <section id="origin">
+            <h2>Origin of Pasta</h2>
+            <p>
+              Pasta has a long and debated history, with many scholars
+              suggesting it originated in China over 4000 years ago. Some credit
+              the ancient Romans with making early versions of pasta. It is
+              widely believed that Marco Polo introduced pasta to Italy after
+              his travels to China, but this claim has been challenged.
+            </p>
+          </section>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <section id="spread">
+            <h2>Spread Across the World</h2>
+            <p>
+              As pasta-making techniques evolved in Italy, the food spread to
+              other parts of Europe, especially during the Renaissance. Italians
+              refined pasta recipes, pairing it with various sauces like
+              tomato-based marinara.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <!-- Dish Cards -->
+      <div id="dishes-container" class="row mb-4"></div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="text-center mb-4">
+            <button id="surprise-button" class="btn btn-primary btn-lg">
+              Chef's Surprise
+            </button>
+          </div>
+
+          <div id="surprise-container" class="text-center mb-4"></div>
+
+          <div id="dishes-container" class="row mb-4"></div>
+
+          <div class="text-center mb-4">
+            <input
+              type="text"
+              id="name-input"
+              placeholder="Enter your name"
+              class="form-control w-75 d-inline-block"
+            />
+            <p id="greeting" class="mt-2">Buongiorno!</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-4">
+            <h3>Make a Reservation</h3>
+            <form id="reservation-form">
+              <div class="form-group">
+                <label for="reservation-name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="reservation-name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="reservation-email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="reservation-email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="reservation-date">Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="reservation-date"
+                  name="date"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-success">
+                Submit Reservation
+              </button>
+            </form>
+            <p id="message-container" class="mt-2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start mt-4">
+      <div class="container p-4">
+        <p>Address: Astana</p>
+        <p>Contact: <a href="mailto:ayau@test.com">ayau@test.com</a></p>
+        <p><a href="another.html">Learn more about the History of Pasta</a></p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="js/animation.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
