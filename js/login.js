@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       registerMessage.style.color = "green";
       registerForm.reset();
 
-      registerModal.style.display = "none";
+      // registerModal.style.display = "none";
     });
   }
 
