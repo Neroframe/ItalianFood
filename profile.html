@@ -26,21 +26,21 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <!-- Left-aligned nav items -->
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link btn-outline-success" href="index.html"
-                  >History of Pasta</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link btn-outline-success" href="another.html"
-                  >Italian Pasta</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link btn-outline-success" href="api.html"
-                  >More Recipes</a
-                >
-              </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="index.html"
+              >History of Pasta</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="another.html"
+              >Italian Pasta</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-success" href="api.html"
+              >More Recipes</a
+            >
+          </li>
         </ul>
         <!-- Right-aligned nav items -->
         <ul class="navbar-nav ml-auto">
@@ -99,6 +99,63 @@
           </div>
           <button type="submit" class="btn btn-primary">Login</button>
           <p id="auth-message"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span id="register-close" class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="register-name">Name:</label>
+            <input
+              type="text"
+              id="register-name"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email:</label>
+            <input
+              type="email"
+              id="register-email"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-phone">Phone Number:</label>
+            <input
+              type="tel"
+              id="register-phone"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-username">Username:</label>
+            <input
+              type="text"
+              id="register-username"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password:</label>
+            <input
+              type="password"
+              id="register-password"
+              class="form-control"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <p id="register-message"></p>
         </form>
       </div>
     </div>
