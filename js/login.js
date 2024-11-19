@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   /**
    * ===============================
-   * 1. Theme Switching 
+   * 1. Theme Switching
    * ===============================
    */
 
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const authMessage = document.getElementById("auth-message");
   const registerMessage = document.getElementById("register-message");
 
-  // Initialize Users Array with a admin
+  // Initialize Users Array with an admin
   const defaultAdmin = {
     username: "admin",
-    password: "123",
+    password: "admin123",
     name: "Administrator",
     email: "admin@example.com",
     phone: "1234567890",
@@ -69,10 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentUser = localStorage.getItem("currentUser") || null;
 
   function updateAuthStatus() {
-    isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    currentUser = localStorage.getItem("currentUser") || null;
+    const storedUser = localStorage.getItem("currentUser");
+    const storedStatus = localStorage.getItem("isLoggedIn") === "true";
 
-    // show/hide auth forms
+    if (storedStatus && storedUser) {
+      isLoggedIn = true;
+      currentUser = storedUser;
+    } else {
+      isLoggedIn = false;
+      currentUser = null;
+      localStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("currentUser");
+    }
+
+    // Update UI
     if (isLoggedIn) {
       if (loginButton) loginButton.style.display = "none";
       if (registerButton) registerButton.style.display = "none";
@@ -80,8 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         authButton.textContent = "Logout";
         authButton.style.display = "inline-block";
       }
-
-      applyTheme();
     } else {
       if (loginButton) loginButton.style.display = "inline-block";
       if (registerButton) registerButton.style.display = "inline-block";
@@ -104,9 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   if (registerButton && registerModal && registerClose && registerForm) {
     registerButton.addEventListener("click", () => {
+      console.log("Register button clicked!");
       registerModal.style.display = "flex";
       registerMessage.textContent = "";
       registerForm.reset();
@@ -117,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Close if clicked outside
+  // Close modals if clicked outside
   window.addEventListener("click", (event) => {
     if (loginModal && event.target === loginModal) {
       loginModal.style.display = "none";
@@ -127,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // validate utils
+  // Utils
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
@@ -139,30 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function validatePassword(password) {
-    if (password.length < 8) {
-      return false;
-    }
-
-    if (!/[a-z]/.test(password)) {
-      return false;
-    }
-
-    if (!/[A-Z]/.test(password)) {
-      return false;
-    }
-
-    if (!/\d/.test(password)) {
-      return false;
-    }
-
-    if (!/[@$!%*?#&]/.test(password)) {
-      return false;
-    }
-
+    if (password.length < 8) return false;
+    if (!/[a-z]/.test(password)) return false;
+    if (!/[A-Z]/.test(password)) return false;
+    if (!/\d/.test(password)) return false;
+    if (!/[@$!%*?#&]/.test(password)) return false;
     return true;
   }
 
-  // registration
+  // Registration
   if (registerForm && registerMessage) {
     registerForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -177,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("register-password")
         .value.trim();
 
-      // Validation 
+      // Validation
       if (!name || !email || !phone || !username || !password) {
         registerMessage.textContent = "All fields are required.";
         registerMessage.style.color = "red";
@@ -220,6 +213,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "Registration successful! You can now log in.";
       registerMessage.style.color = "green";
       registerForm.reset();
+
+      registerModal.style.display = "none";
     });
   }
 
@@ -242,8 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("currentUser", currentUser);
         loginModal.style.display = "none";
         alert("Login successful!");
-
-        // Redirect to profile.html
+        updateAuthStatus();
         window.location.href = "profile.html";
       } else {
         authMessage.textContent = "Invalid credentials. Please try again.";
@@ -253,19 +247,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Logout
-  authButton.addEventListener("click", () => {
-    if (isLoggedIn) {
-      isLoggedIn = false;
-      currentUser = null;
-      localStorage.setItem("isLoggedIn", "false");
-      localStorage.removeItem("currentUser");
-      alert("You have been logged out.");
-      updateAuthStatus();
-
-      window.location.href = "index.html";
-    }
-  });
-
+  if (authButton) {
+    authButton.addEventListener("click", () => {
+      if (isLoggedIn) {
+        isLoggedIn = false;
+        currentUser = null;
+        localStorage.setItem("isLoggedIn", "false");
+        localStorage.removeItem("currentUser");
+        alert("You have been logged out.");
+        updateAuthStatus();
+        window.location.href = "index.html";
+      }
+    });
+  }
 
   /**
    * ===============================
@@ -276,9 +270,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileButton = document.getElementById("profile-button");
 
   if (profileButton) {
-    profileButton.addEventListener("click", () => {
-      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!isLoggedIn) {
+      profileButton.style.display = "none"; // Hide profile button if not logged in
+    } else {
+      profileButton.style.display = "inline-block"; // Show profile button if logged in
+    }
 
+    profileButton.addEventListener("click", () => {
       if (isLoggedIn) {
         window.location.href = "profile.html";
       } else {
@@ -288,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayUserProfile() {
-    // Check if the profile elements exist
     const profileName = document.getElementById("profile-name");
     const profileEmail = document.getElementById("profile-email");
     const profilePhone = document.getElementById("profile-phone");
@@ -305,12 +302,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const user = users.find((user) => user.username === currentUser);
 
       if (!user) {
-        // If user data not found, redirect to main page
         window.location.href = "index.html";
         return;
       }
 
-      // Populate profile details
+      // Populate profile
       profileName.textContent = user.name;
       profileEmail.textContent = user.email;
       profilePhone.textContent = user.phone;
